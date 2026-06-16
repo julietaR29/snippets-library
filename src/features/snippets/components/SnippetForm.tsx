@@ -1,7 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { useSnippetsStore } from "../store";
-import type { SnippetFormData } from "../types";
-import { createSnippetFromForm } from "../utils";
+import type { Snippet, SnippetFormData } from "../types";
+import { createSnippetFromForm, updateSnippetFromForm } from "../utils";
+
+type SnippetFormProps = {
+  snippetToEdit?: Snippet;
+  onFinishEditing?: () => void;
+};
 
 const initialFormData: SnippetFormData = {
   title: "",
@@ -11,12 +16,43 @@ const initialFormData: SnippetFormData = {
   tags: "",
 };
 
-export function SnippetForm() {
+function getInitialFormData(snippet?: Snippet): SnippetFormData {
+  if (!snippet) {
+    return initialFormData;
+  }
+
+  return {
+    title: snippet.title,
+    language: snippet.language,
+    code: snippet.code,
+    description: snippet.description,
+    tags: snippet.tags.join(", "),
+  };
+}
+
+export function SnippetForm({
+  snippetToEdit,
+  onFinishEditing,
+}: SnippetFormProps) {
   const addSnippet = useSnippetsStore((state) => state.addSnippet);
-  const [formData, setFormData] = useState<SnippetFormData>(initialFormData);
+  const updateSnippet = useSnippetsStore((state) => state.updateSnippet);
+
+  const [formData, setFormData] = useState<SnippetFormData>(
+    getInitialFormData(snippetToEdit)
+  );
+
+  const isEditing = Boolean(snippetToEdit);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (snippetToEdit) {
+      const updatedSnippet = updateSnippetFromForm(snippetToEdit, formData);
+
+      updateSnippet(snippetToEdit.id, updatedSnippet);
+      onFinishEditing?.();
+      return;
+    }
 
     const newSnippet = createSnippetFromForm(formData);
 
@@ -79,7 +115,9 @@ export function SnippetForm() {
         />
       </label>
 
-      <button type="submit">Guardar snippet</button>
+      <button type="submit">
+        {isEditing ? "Guardar cambios" : "Guardar snippet"}
+      </button>
     </form>
   );
 }

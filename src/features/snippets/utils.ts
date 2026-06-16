@@ -24,3 +24,18 @@ export function createSnippetFromForm(data: SnippetFormData): Snippet {
     updatedAt: now,
   };
 }
+
+export function updateSnippetFromForm(
+  snippet: Snippet,
+  data: SnippetFormData
+): Snippet {
+  return {
+    ...snippet,
+    title: data.title.trim(),
+    language: data.language.trim(),
+    code: data.code.trim(),
+    description: data.description.trim(),
+    tags: normalizeTags(data.tags),
+    updatedAt: new Date().toISOString(),
+  };
+}
