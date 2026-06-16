@@ -1,5 +1,4 @@
-import { useState } from "react";
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useSnippetsStore } from "../store";
 import type { SnippetFormData } from "../types";
 import { createSnippetFromForm } from "../utils";
@@ -26,9 +25,9 @@ export function SnippetForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Título
+    <form className="snippet-form" onSubmit={handleSubmit}>
+      <label className="form-field">
+        <span>Título</span>
         <input
           type="text"
           value={formData.title}
@@ -38,8 +37,8 @@ export function SnippetForm() {
         />
       </label>
 
-      <label>
-        Lenguaje
+      <label className="form-field">
+        <span>Lenguaje</span>
         <input
           type="text"
           value={formData.language}
@@ -49,8 +48,8 @@ export function SnippetForm() {
         />
       </label>
 
-      <label>
-        Descripción
+      <label className="form-field">
+        <span>Descripción</span>
         <textarea
           value={formData.description}
           onChange={(event) =>
@@ -59,8 +58,8 @@ export function SnippetForm() {
         />
       </label>
 
-      <label>
-        Código
+      <label className="form-field">
+        <span>Código</span>
         <textarea
           value={formData.code}
           onChange={(event) =>
@@ -69,8 +68,8 @@ export function SnippetForm() {
         />
       </label>
 
-      <label>
-        Etiquetas separadas por coma
+      <label className="form-field">
+        <span>Etiquetas separadas por coma</span>
         <input
           type="text"
           value={formData.tags}
