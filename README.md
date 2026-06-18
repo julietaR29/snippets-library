@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Biblioteca de Snippets de Código
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto integrador del módulo de React.  
+Aplicación SPA para guardar y administrar snippets de código reutilizables.
 
-Currently, two official plugins are available:
+## Idea elegida
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Idea 16: Biblioteca de Snippets de Código.
 
-## React Compiler
+## Alcance de D1
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Esta rama implementa la base del proyecto:
 
-## Expanding the ESLint configuration
+- Scaffold con React, TypeScript y Vite.
+- Configuración de React Router.
+- Arquitectura feature-first.
+- Modelo de datos de snippets.
+- Store global con Zustand.
+- Persistencia en localStorage mediante Zustand persist.
+- CRUD base de snippets:
+  - crear
+  - listar
+  - editar
+  - eliminar
+- Marcado de snippet favorito.
+- Validación mínima del formulario.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+No incluye:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Filtros por lenguaje, etiqueta o favoritos.
+- Copiar snippets al portapapeles.
+- Búsqueda por palabra clave.
+- Resaltado de sintaxis.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tecnologías
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Zustand
+- CSS
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estructura del proyecto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```txt
+src/
+  app/
+    providers.tsx
+    router.tsx
+  features/
+    snippets/
+      components/
+      pages/
+      store.ts
+      types.ts
+      utils.ts
+  shared/
