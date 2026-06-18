@@ -1,7 +1,5 @@
 import type { Snippet, SnippetFormData } from "./types";
 
-// Agarrá un texto de etiquetas separado por comas, separalo en partes,
-// limpiá los espacios y sacá las partes vacías.
 export function normalizeTags(tags: string): string[] {
   return tags
     .split(",")
@@ -38,4 +36,20 @@ export function updateSnippetFromForm(
     tags: normalizeTags(data.tags),
     updatedAt: new Date().toISOString(),
   };
+}
+
+export function validateSnippetForm(data: SnippetFormData): string | null {
+  if (!data.title.trim()) {
+    return "El título es obligatorio.";
+  }
+
+  if (!data.language.trim()) {
+    return "El lenguaje es obligatorio.";
+  }
+
+  if (!data.code.trim()) {
+    return "El código es obligatorio.";
+  }
+
+  return null;
 }

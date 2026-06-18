@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useSnippetsStore } from "../store";
 import type { Snippet, SnippetFormData } from "../types";
-import { createSnippetFromForm, updateSnippetFromForm } from "../utils";
+import {createSnippetFromForm, updateSnippetFromForm, validateSnippetForm,} from "../utils";
 
 type SnippetFormProps = {
   snippetToEdit?: Snippet;
@@ -41,10 +41,20 @@ export function SnippetForm({
     getInitialFormData(snippetToEdit)
   );
 
+  const [error, setError] = useState<string | null>(null);
+
   const isEditing = Boolean(snippetToEdit);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const validationError = validateSnippetForm(formData);
+
+    if (validationError) {
+       setError(validationError);
+       return;
+    }
+
+    setError(null);
 
     if (snippetToEdit) {
       const updatedSnippet = updateSnippetFromForm(snippetToEdit, formData);
@@ -115,6 +125,8 @@ export function SnippetForm({
         />
       </label>
 
+      {error && <p className="form-error">{error}</p>}
+      
       <button type="submit">
         {isEditing ? "Guardar cambios" : "Guardar snippet"}
       </button>
