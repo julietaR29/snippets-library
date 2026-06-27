@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSnippetsStore } from "../store";
 import type { Snippet } from "../types";
-import { SnippetForm } from "./SnippetForm";
-import { SnippetFilters } from "./SnippetFilters";
+import { copyToClipboard } from "../utils";
 import { useFilteredSnippets } from "../hooks/useFilteredSnippets";
+import { SnippetFilters } from "./SnippetFilters";
+import { SnippetForm } from "./SnippetForm";
 
 export function SnippetList() {
   const deleteSnippet = useSnippetsStore((state) => state.deleteSnippet);
   const toggleFavorite = useSnippetsStore((state) => state.toggleFavorite);
+
   const [editingSnippetId, setEditingSnippetId] = useState<string | null>(null);
+  const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
+
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const {
     filtered,
@@ -24,6 +29,32 @@ export function SnippetList() {
   function getSnippetToEdit(snippet: Snippet) {
     return snippet.id === editingSnippetId;
   }
+
+  async function handleCopy(snippet: Snippet) {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    const success = await copyToClipboard(snippet.code);
+
+    if (!success) {
+      return;
+    }
+
+    setCopiedSnippetId(snippet.id);
+
+    timeoutRef.current = setTimeout(() => {
+      setCopiedSnippetId(null);
+    }, 2000);
+  }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section className="snippets-section">
@@ -77,6 +108,15 @@ export function SnippetList() {
                         <p>Etiquetas: {snippet.tags.join(", ")}</p>
                       )}
                       <div className="snippet-actions">
+                        {/* Botón Copiar con feedback visual dinámico */}
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(snippet)}
+                          className={copiedSnippetId === snippet.id ? "copied" : ""}
+                        >
+                          {copiedSnippetId === snippet.id ? "¡Copiado!" : "Copiar"}
+                        </button>
+
                         <button
                           type="button"
                           onClick={() => setEditingSnippetId(snippet.id)}
