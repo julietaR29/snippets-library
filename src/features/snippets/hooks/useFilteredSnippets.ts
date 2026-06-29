@@ -66,8 +66,12 @@ export function useFilteredSnippets() {
     setFilters((prev) => ({ ...prev, onlyFavorites: !prev.onlyFavorites }));
   }
 
+  function setQuery(query: string) {
+    setFilters((prev) => ({ ...prev, query }));
+  }
+
   function resetFilters() {
-    setFilters({ language: "", tag: "", onlyFavorites: false });
+    setFilters({ language: "", tag: "", onlyFavorites: false, query: "" });
   }
 
   return {
@@ -78,6 +82,7 @@ export function useFilteredSnippets() {
     setLanguage,
     setTag,
     toggleOnlyFavorites,
+    setQuery,
     resetFilters,
   };
 }
