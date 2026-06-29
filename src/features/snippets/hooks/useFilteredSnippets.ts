@@ -6,7 +6,7 @@ export type FilterState = {
   language: string;
   tag: string;
   onlyFavorites: boolean;
-  query: string; 
+  query: string;
 };
 
 export function useFilteredSnippets() {
@@ -16,6 +16,7 @@ export function useFilteredSnippets() {
     language: "",
     tag: "",
     onlyFavorites: false,
+    query: "",
   });
 
   const availableLanguages = useMemo(
