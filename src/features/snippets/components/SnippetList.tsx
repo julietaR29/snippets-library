@@ -5,6 +5,7 @@ import { copyToClipboard } from "../utils";
 import { useFilteredSnippets } from "../hooks/useFilteredSnippets";
 import { SnippetFilters } from "./SnippetFilters";
 import { SnippetForm } from "./SnippetForm";
+import { SnippetCodeDisplay } from "./SnippetCodeDisplay";
 
 export function SnippetList() {
   const deleteSnippet = useSnippetsStore((state) => state.deleteSnippet);
@@ -101,9 +102,7 @@ export function SnippetList() {
                       </div>
                       <p>{snippet.description}</p>
                       <p>Lenguaje: {snippet.language}</p>
-                      <pre>
-                        <code>{snippet.code}</code>
-                      </pre>
+                      <SnippetCodeDisplay code={snippet.code} language={snippet.language} />
                       {snippet.tags.length > 0 && (
                         <p>Etiquetas: {snippet.tags.join(", ")}</p>
                       )}
