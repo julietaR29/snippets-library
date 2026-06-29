@@ -6,6 +6,7 @@ export type FilterState = {
   language: string;
   tag: string;
   onlyFavorites: boolean;
+  query: string; 
 };
 
 export function useFilteredSnippets() {
