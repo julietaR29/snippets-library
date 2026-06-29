@@ -10,7 +10,7 @@ export function SearchBar({ query, onQueryChange }: Props) {
         Buscar snippets
       </label>
       <div className="search-bar__input-wrapper">
-        <input
+<input
           id="snippet-search"
           type="search"
           placeholder="Buscar por título, descripción, código o etiqueta..."
@@ -18,6 +18,15 @@ export function SearchBar({ query, onQueryChange }: Props) {
           onChange={(e) => onQueryChange(e.target.value)}
           className="search-bar__input"
         />
+        {query && (
+          <button
+            type="button"
+            className="search-bar__clear"
+            onClick={() => onQueryChange("")}
+          >
+            ✕
+          </button>
+        )}
       </div>
     </div>
   );
