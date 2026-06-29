@@ -30,10 +30,26 @@ export function useFilteredSnippets() {
   );
 
   const filtered = useMemo(() => {
+    const q = filters.query.trim().toLowerCase();
+
     return snippets.filter((snippet: Snippet) => {
       if (filters.language && snippet.language !== filters.language) return false;
       if (filters.tag && !snippet.tags.includes(filters.tag)) return false;
       if (filters.onlyFavorites && !snippet.favorite) return false;
+
+      if (q) {
+        const matchesTitle = snippet.title.toLowerCase().includes(q);
+        const matchesDescription = snippet.description.toLowerCase().includes(q);
+        const matchesCode = snippet.code.toLowerCase().includes(q);
+        const matchesTags = snippet.tags.some((tag) =>
+          tag.toLowerCase().includes(q)
+        );
+
+        if (!matchesTitle && !matchesDescription && !matchesCode && !matchesTags) {
+          return false;
+        }
+      }
+
       return true;
     });
   }, [snippets, filters]);
