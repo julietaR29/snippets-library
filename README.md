@@ -115,14 +115,15 @@ pnpm lint
 
 ---
 
-# Equipo de Desarrollo
+## Equipo de Desarrollo
 
-| Integrante | Alcance |
-|------------|:-------:|
-| **Julieta Rodríguez** | **D1 & D2** |
-| **Agustín Quintana** | **D3** |
-| **Guillermina Gatti** | **D4** |
-| **Lucas** | **D5** |
+| Integrante | Alcance | Responsabilidad |
+|------------|:-------:|-----------------|
+| **Julieta Rodríguez** | **D1** | Configuración inicial del proyecto y estructura base. |
+| **Carolina Pally** | **D2** | Gestión de snippets, filtros y estado global con Zustand. |
+| **Agustín Quintana** | **D3** | Funcionalidad de copiado al portapapeles con feedback visual. |
+| **Guillermina Gatti** | **D4** | Búsqueda de snippets por palabra clave. |
+| **Lucas Laurido** | **D5** | Resaltado de sintaxis (Syntax Highlight). |
 
 ---
 
