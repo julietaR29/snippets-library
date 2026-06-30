@@ -75,7 +75,11 @@ export function SnippetList() {
       />
 
       {filtered.length === 0 ? (
-        <p>No hay snippets que coincidan con los filtros.</p>
+        <p>
+          {filters.query || filters.language || filters.tag || filters.onlyFavorites
+            ? "No hay snippets que coincidan con la búsqueda."
+            : "Todavía no hay snippets guardados."}
+        </p>
       ) : (
         <ul className="snippets-list">
           {filtered.map((snippet) => {
