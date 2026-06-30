@@ -5,6 +5,7 @@ import { copyToClipboard } from "../utils";
 import { useFilteredSnippets } from "../hooks/useFilteredSnippets";
 import { SnippetFilters } from "./SnippetFilters";
 import { SnippetForm } from "./SnippetForm";
+import { SearchBar } from "./SearchBar";
 
 export function SnippetList() {
   const deleteSnippet = useSnippetsStore((state) => state.deleteSnippet);
@@ -23,6 +24,7 @@ export function SnippetList() {
     setLanguage,
     setTag,
     toggleOnlyFavorites,
+    setQuery,
     resetFilters,
   } = useFilteredSnippets();
 
@@ -59,6 +61,8 @@ export function SnippetList() {
   return (
     <section className="snippets-section">
       <h2>Snippets guardados</h2>
+
+      <SearchBar query={filters.query} onQueryChange={setQuery} />
 
       <SnippetFilters
         filters={filters}
