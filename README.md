@@ -45,6 +45,8 @@ El objetivo del proyecto es ofrecer una biblioteca personal donde el usuario pue
 - Zustand
 - CSS
 - Async Clipboard API
+- highlight.js
+- Local Storage
 
 ---
 
@@ -120,7 +122,7 @@ pnpm lint
 | Integrante | Alcance | Responsabilidad |
 |------------|:-------:|-----------------|
 | **Julieta Rodríguez** | **D1** | Configuración inicial del proyecto y estructura base. |
-| **Carolina Pally** | **D2** | Gestión de snippets, filtros y estado global con Zustand. |
+| **Carolina Pally** | **D2** | Filtros por lenguaje, etiquetas y favoritos. |
 | **Agustín Quintana** | **D3** | Funcionalidad de copiado al portapapeles con feedback visual. |
 | **Guillermina Gatti** | **D4** | Búsqueda de snippets por palabra clave. |
 | **Lucas Laurido** | **D5** | Resaltado de sintaxis (Syntax Highlight). |
@@ -146,4 +148,8 @@ pnpm lint
 
 Todos los alcances definidos para la primera entrega (**D1 a D5**) fueron implementados e integrados en una única aplicación funcional.
 
+# Links
+
+- Repositorio: https://github.com/julietaR29/snippets-library
+- Deploy: pendiente
 ---
