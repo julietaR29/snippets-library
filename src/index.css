@@ -90,12 +90,16 @@ button:hover {
   margin-bottom: 8px;
 }
 
-pre {
-  overflow-x: auto;
-  padding: 12px;
+.snippet-code-block {
   background-color: #111827;
-  color: #f9fafb;
   border-radius: 6px;
+}
+
+.snippet-code-block code {
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 0.95rem;
+  white-space: pre;
+  color: #f9fafb;
 }
 
 .form-error {
