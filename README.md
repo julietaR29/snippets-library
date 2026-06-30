@@ -7,30 +7,15 @@ Aplicación SPA para guardar y administrar snippets de código reutilizables.
 
 Idea 16: Biblioteca de Snippets de Código.
 
-## Alcance de D1
+## Alcance de D4
 
-Esta rama implementa la base del proyecto:
+Esta rama implementa la búsqueda por palabra clave:
 
-- Scaffold con React, TypeScript y Vite.
-- Configuración de React Router.
-- Arquitectura feature-first.
-- Modelo de datos de snippets.
-- Store global con Zustand.
-- Persistencia en localStorage mediante Zustand persist.
-- CRUD base de snippets:
-  - crear
-  - listar
-  - editar
-  - eliminar
-- Marcado de snippet favorito.
-- Validación mínima del formulario.
-
-No incluye:
-
-- Filtros por lenguaje, etiqueta o favoritos.
-- Copiar snippets al portapapeles.
-- Búsqueda por palabra clave.
-- Resaltado de sintaxis.
+- Input de búsqueda en tiempo real.
+- Búsqueda dentro del título, descripción, código y etiquetas.
+- Botón para limpiar la búsqueda con un clic.
+- Mensaje contextual cuando no hay resultados.
+- Compatible con los filtros del D2 (lenguaje, etiqueta, favoritos).
 
 ## Tecnologías
 
@@ -51,8 +36,16 @@ src/
   features/
     snippets/
       components/
+        SearchBar.tsx
+        SnippetFilters.tsx
+        SnippetForm.tsx
+        SnippetList.tsx
+      hooks/
+        useFilteredSnippets.ts
       pages/
+        SnippetsPage.tsx
       store.ts
       types.ts
       utils.ts
   shared/
+```
