@@ -185,3 +185,32 @@ pre {
     align-items: center;
   }
 }
+
+/* D4: SearchBar */
+
+.search-bar {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.search-bar__label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.search-bar__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 40px 10px 12px;
+  border: 1px solid #c8d0d8;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 14px;
+}
