@@ -151,5 +151,5 @@ Todos los alcances definidos para la primera entrega (**D1 a D5**) fueron implem
 # Links
 
 - Repositorio: https://github.com/julietaR29/snippets-library
-- Deploy: pendiente
+- Deploy: https://snippets-library-eight.vercel.app
 ---
